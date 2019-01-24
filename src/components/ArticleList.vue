@@ -1,31 +1,29 @@
 <template>
     <div class="ArticleList">
-        <article class="Article" v-for="article in articles" :key="article.id">
-            <router-link :to="{ name: 'detail',params: {id: article.id}}">
-                <h2 class="Article-title">{{article.title}}</h2>
-                <p class="Article-text">
-                    {{article.text}}
-                </p>
-            </router-link>
-        </article>
+        <Article class="Article" v-for="article in articles" :key="article.id"
+        :title="article.title" :text="article.text" :id="article.id"
+        />
     </div>
 </template>
 
 <script>
-
+import Article from '@/components/Article.vue'
 export default {
     name: 'ArticleList',
+    components: {
+        Article
+    },
     data() {
         return {
             articles: [{
-                "title": "nadpis",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, provident! Culpa asperiores laudantium fuga ullam, minus, eveniet nisi dolores ratione ut quam dignissimos sit, est ipsum excepturi. Magni, unde magnam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, officiis facere maxime quas ullam nostrum hic dolorem illum temporibus ratione, excepturi voluptate quaerat nam nihil amet. Amet eligendi dolores eos.",
-                "id": 0
+                title: "nadpis",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, provident! Culpa asperiores laudantium fuga ullam, minus, eveniet nisi dolores ratione ut quam dignissimos sit, est ipsum excepturi. Magni, unde magnam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, officiis facere maxime quas ullam nostrum hic dolorem illum temporibus ratione, excepturi voluptate quaerat nam nihil amet. Amet eligendi dolores eos.",
+                id: 0
             },
             {
-                "title": "nadpis 2",
-                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, provident! Culpa asperiores laudantium fuga ullam, minus, eveniet nisi dolores ratione ut quam dignissimos sit, est ipsum excepturi. Magni, unde magnam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, officiis facere maxime quas ullam nostrum hic dolorem illum temporibus ratione, excepturi voluptate quaerat nam nihil amet. Amet eligendi dolores eos.",
-                "id": 1
+                title: "nadpis 2",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, provident! Culpa asperiores laudantium fuga ullam, minus, eveniet nisi dolores ratione ut quam dignissimos sit, est ipsum excepturi. Magni, unde magnam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad, officiis facere maxime quas ullam nostrum hic dolorem illum temporibus ratione, excepturi voluptate quaerat nam nihil amet. Amet eligendi dolores eos.",
+                id: 1
             }]
         }
     }

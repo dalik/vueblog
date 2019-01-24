@@ -1,16 +1,18 @@
 <template>
     <div>
-        {{test}}
+        <Topbar/> 
+        <ArticleList/>
     </div>
 </template>
 
 <script>
+import Topbar from '@/components/Topbar.vue'
+import ArticleList from '@/components/ArticleList.vue'
 export default {
     name: 'Homepage',
-    data() {
-        return {
-            test: "nejaky text"
-        }
+    components: {
+        ArticleList,
+        Topbar
     }
 }
 </script>

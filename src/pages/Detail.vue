@@ -1,21 +1,24 @@
 <template>
-    <div class="Detail">
+    <div>
         <Topbar/> 
-        detail
+        <div class="Container">
+            {{title}}
+        </div>
     </div>
 </template>
 
 <script>
-import Topbar from '../components/Topbar.vue'
-
+import Topbar from '@/components/Topbar.vue'
 export default {
-    name: 'Detail',
-    components: {
+    name: 'Homepage',
+        components: {
+
         Topbar
     }
 }
 </script>
 
-<style lang="stylus">
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
 
 </style>

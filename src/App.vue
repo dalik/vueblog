@@ -1,20 +1,17 @@
 <template>
     <div id="app">
-        <Topbar/> 
-        <ArticleList/>
+        <transition name="fade" mode="out-in">
+            <router-view :key="$route.params.url"></router-view>
+        </transition>
     </div>
 </template>
 
 <script>
-import Topbar from './components/Topbar.vue'
-import ArticleList from './components/ArticleList.vue'
+
 
 export default {
     name: 'app',
-    components: {
-        ArticleList,
-        Topbar
-    }
+
 }
 </script>
 
@@ -33,4 +30,15 @@ export default {
         margin auto  
         max-width 1050px
         padding 0 20px
+
+    
+    .fade-enter-active, .fade-leave-active 
+        transition: opacity .2s, top 0.2s;
+
+    .fade-enter
+        top 50px  
+        opacity 0  
+
+    .fade-leave-to 
+        opacity 0
 </style>

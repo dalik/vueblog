@@ -1,19 +1,26 @@
 <template>
-    <div>
-        <a href="" class="Article" v-for="article in articles" :key="article.id">
-            <h2 class="Article-title">{{article.title}}</h2>
-            <p class="Article-text">
-                {{article.text}}
-            </p>
-        </a>
-    </div>
+    <router-link :to="{ name: 'detail',params: {id: id}}">
+        <h2 class="Article-title">{{title}}</h2>
+        <p class="Article-text">
+            {{text}}
+        </p>
+    </router-link>
 </template>
 
 <script>
 export default {
     name: 'Article',
-    props: ['articles'],
-    created
+    props: {
+        title: {
+            type: String,
+        },
+        text: {
+            type: String,
+        },
+        id: {
+            type: Number,
+        }
+    }
 }
 </script>
 
