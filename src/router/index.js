@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Detail from '../pages/Detail'
 import Homepage from '../pages/Homepage'
+import NewArticle from '../pages/NewArticle'
 
 Vue.use(Router)
 
@@ -19,5 +20,10 @@ export default new Router({
             path: '/',
             component: Homepage
         },
+        {
+            name: "newArticle",
+            path: '/new',
+            component: NewArticle
+        }
     ]
 })

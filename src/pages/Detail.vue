@@ -2,19 +2,28 @@
     <div>
         <Topbar/> 
         <div class="Container">
-            {{title}}
+            
         </div>
     </div>
 </template>
 
 <script>
+import { db } from '@/config/db';
 import Topbar from '@/components/Topbar.vue'
 export default {
-    name: 'Homepage',
-        components: {
-
+    name: 'Detail',
+    components: {
         Topbar
-    }
+    },
+    firebase: function() {
+        return {
+            article: {
+                source: db.ref('articles'),
+                asObject: true
+            }
+        }
+    },
+
 }
 </script>
 

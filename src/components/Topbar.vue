@@ -3,8 +3,7 @@
         <div class="Container">
             <div class="Topbar-inner">
                 <h1 class="Topbar-title">Vue blog boilerplate</h1>
-
-            <a href="" class="Topbar-addButton">+</a>
+                <router-link :to="{ name: 'newArticle'}" class="Topbar-addButton">+</router-link>
             </div>
         </div>
     </div>
