@@ -23,9 +23,6 @@
 import { db } from '../config/db';
 export default {
     name: 'NewArticle',
-    firebase: {
-        articles: db.ref('articles'),
-    },
     data () {
         return {
             article: {
@@ -36,13 +33,7 @@ export default {
     },
     methods: {
         add() {
-            this.$firebaseRefs.articles.push({
-                title: this.article.title,
-                text: this.article.text
-            })
-            this.article.title = '';
-            this.article.text = '';
-            alert("Succeessfully added")
+            db.collection('articles').add(this.article).then(this.$router.push({ name: "homepage"}))
         }
     }
 }

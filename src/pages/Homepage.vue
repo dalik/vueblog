@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Topbar from '@/components/Topbar.vue'
-import ArticleList from '@/components/ArticleList.vue'
+import Topbar from '@/components/Topbar'
+import ArticleList from '@/components/ArticleList'
 export default {
     name: 'Homepage',
     components: {

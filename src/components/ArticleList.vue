@@ -1,22 +1,36 @@
 <template>
     <div class="ArticleList">
-        <Article class="Article" v-for="(article, id) in articles" :key="id"
-        :title="article.title" :text="article.text" :id="article['.key']"
+        <Article class="Article" v-for="article in articles" :key="article.id"
+        :title="article.item.title" :text="article.item.text" :id="article.id"
         />
     </div>
 </template>
 
 <script>
-import { db } from '../config/db';
-import Article from '@/components/Article.vue'
+import {db} from '@/config/db';
+import Article from '@/components/Article'
 export default {
     name: 'ArticleList',
-    firebase: {
-        articles: db.ref('articles')
-    },
     components: {
         Article
     },
+    data() {
+        return {
+            articles: []
+        }
+    },
+    created() {
+        db.collection('articles').get().then(querySnapshot => {
+        const items = []
+        querySnapshot.forEach(doc => {
+            items.push({
+                item: doc.data(),
+                id: doc.id
+            })
+        })
+        this.articles = items
+      })
+    }
 
 }
 </script>

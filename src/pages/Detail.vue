@@ -2,32 +2,56 @@
     <div>
         <Topbar/> 
         <div class="Container">
-            
+            <div v-if="loaded">
+                <h1>{{title}}</h1>
+                <p>{{text}}</p>
+            </div>
+            <div v-else>
+                <h1>Loading...</h1>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import { db } from '@/config/db';
-import Topbar from '@/components/Topbar.vue'
+import {db} from '@/config/db';
+import Topbar from '@/components/Topbar'
 export default {
     name: 'Detail',
     components: {
         Topbar
     },
-    firebase: function() {
+    data() {
         return {
-            article: {
-                source: db.ref('articles'),
-                asObject: true
-            }
+            title: '',
+            text: '',
+            loaded: false,
         }
     },
+    beforeCreate () {
+        db.collection('articles').get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                if (doc.id == this.$route.params.id) {
+                    const { title, text } = doc.data()
+                    this.title = title
+                    this.text = text
+                }
+            })
+            this.loaded = true
+        })
+    }
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style scoped lang="stylus">
+    h1 
+        margin-top 20px
+    p
+        color #66647c
+        font-size 14px
+        line-height 1.5
+        margin-top 20px
 </style>
