@@ -28,7 +28,7 @@ export default {
             loaded: false,
         }
     },
-    beforeCreate () {
+    created () {
         db.collection('articles').get()
         .then(querySnapshot => {
             querySnapshot.forEach(doc => {

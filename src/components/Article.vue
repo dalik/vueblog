@@ -35,6 +35,8 @@ export default {
         text-decoration none
         transition all .3s
         margin-bottom 40px
+        max-height 200px
+        overflow hidden
 
         &:hover  
             box-shadow 0 0.5rem 1.5rem rgba(36,35,49,.1)
@@ -52,4 +54,6 @@ export default {
             color #66647c
             font-size 14px
             line-height 1.5
+            overflow hidden
+            max-height 100px
 </style>

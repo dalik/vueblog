@@ -1,9 +1,19 @@
 <template>
-    <div class="ArticleList">
-        <Article class="Article" v-for="article in articles" :key="article.id"
-        :title="article.item.title" :text="article.item.text" :id="article.id"
-        />
+    <div>
+        <div v-if="loaded">
+            <div class="ArticleList">
+                <Article class="Article" v-for="article in articles" :key="article.id"
+                :title="article.item.title" :text="article.item.text" :id="article.id"
+                />
+
+                <a href="#" v-if="pagiEnd" class="Button" @click.prevent="loadMore()">Load more</a>
+            </div>
+        </div>
+        <div v-else>
+            <h1>Loading...</h1>
+        </div>
     </div>
+    
 </template>
 
 <script>
@@ -16,11 +26,14 @@ export default {
     },
     data() {
         return {
-            articles: []
+            articles: [],
+            loaded: false,
+            lastVisible: '',
+            pagiEnd: true
         }
     },
     created() {
-        db.collection('articles').get().then(querySnapshot => {
+        db.collection('articles').orderBy("text").limit(3).get().then(querySnapshot => {
         const items = []
         querySnapshot.forEach(doc => {
             items.push({
@@ -28,8 +41,24 @@ export default {
                 id: doc.id
             })
         })
+        this.lastVisible = querySnapshot.docs[querySnapshot.size - 1]
         this.articles = items
+        this.loaded = true
       })
+    },
+    methods: {
+        loadMore() {
+           db.collection('articles').orderBy("text").startAfter(this.lastVisible).get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    this.articles.push({
+                        item: doc.data(),
+                        id: doc.id
+                    })
+                })
+
+                this.pagiEnd = false
+            }) 
+        }
     }
 
 }
@@ -70,4 +99,16 @@ export default {
             color #66647c
             font-size 14px
             line-height 1.5
+
+    .Button  
+        background #00cec9
+        border 0
+        color #ffffff
+        text-align center
+        padding 15px 30px
+        margin-top 20px
+        cursor pointer
+        text-decoration none
+        margin auto
+        display table
 </style>

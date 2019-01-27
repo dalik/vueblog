@@ -5,11 +5,11 @@
                 <label for="">
                     Titulek:
 
-                    <input type="text" v-model="article.title">
+                    <input type="text" v-model="article.title" required>
                 </label>
 
                 <label for="">Text: 
-                    <textarea name="" id="" cols="30" rows="10" v-model="article.text"></textarea>
+                    <textarea name="" id="" cols="30" rows="10" v-model="article.text" required></textarea>
                 </label>
 
                 <button type="submit">Přidat</button>
